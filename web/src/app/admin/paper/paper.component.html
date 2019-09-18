@@ -1,0 +1,240 @@
+<app-header></app-header>
+
+<div class="container top" >
+    <div class="row">
+    <div class="col-sm-12 col-xs-12 col-md-12">
+        <div class="card card1">
+            <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+            <div class="card-body">
+                <h2 style="color: red;margin-left:35%;">Add Paper</h2>
+                <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                    <!-- <div class="form-group">
+                          <label for="country"><b>Category</b></label>
+                            <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" autofocus />
+                            <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                                <div *ngIf="f.name.errors.required">Category is required</div>
+                            </div>
+                        </div> -->
+                         <div class="form-group">
+                            <label for="country"><b>Category</b></label>&nbsp;&nbsp;
+                            <p-dropdown (onChange)="onCategoryChange($event)" [options]="categories"  formControlName="category" placeholder="Select a Category" optionLabel="name" ></p-dropdown>
+
+                              <div *ngIf="submitted && f.category.errors" class="invalid-feedback">
+                                  <div *ngIf="f.category.errors.required">Category is required</div>
+                              </div>
+                          </div>
+
+                          <div class="form-group">
+                              <label for="subject"><b>Subject</b></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                              <p-dropdown [options]="subjects"  formControlName="subject" placeholder="Select &nbsp;a &nbsp; subject" optionLabel="subject" ></p-dropdown>
+
+                                <div *ngIf="submitted && f.subject.errors" class="invalid-feedback">
+                                    <div *ngIf="f.subject.errors.required">subject is required</div>
+                                </div>
+                            </div>
+  
+                    <div class="form-group">
+                        <label for="question"><b>Question</b></label>
+                            <textarea rows="5" cols="10" formControlName="question" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.question.errors }" placeholder="Please Enter The Question" ></textarea>
+                        <div *ngIf="submitted && f.question.errors" class="invalid-feedback">
+                            <div *ngIf="f.question.errors.required"> Question is required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Option1"><b>Option1</b></label>
+                        <input type="text" formControlName="Option1" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.Option1.errors }" placeholder="Please Enter The Option1"  />
+                        <div *ngIf="submitted && f.Option1.errors" class="invalid-feedback">
+                            <div *ngIf="f.Option1.errors.required"> Option1 is required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Option2"><b>Option2</b></label>
+                        <input type="text" formControlName="Option2" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.Option2.errors }" placeholder="Please Enter The Option2"  />
+                        <div *ngIf="submitted && f.Option2.errors" class="invalid-feedback">
+                            <div *ngIf="f.Option2.errors.required"> Option2 is required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Option3"><b>Option3</b></label>
+                        <input type="text" formControlName="Option3" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.Option3.errors }" placeholder="Please Enter The Option3"  />
+                        <div *ngIf="submitted && f.Option3.errors" class="invalid-feedback">
+                            <div *ngIf="f.Option3.errors.required"> Option3 is required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Option4"><b>Option4</b></label>
+                        <input type="text" formControlName="Option4" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.Option4.errors }" placeholder="Please Enter The Option4" />
+                        <div *ngIf="submitted && f.Option4.errors" class="invalid-feedback">
+                            <div *ngIf="f.Option4.errors.required"> Option4 is required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="correct"><b>Correct Answer</b></label>
+                        <input type="text" formControlName="correct" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.correct.errors }" placeholder="Please Enter The Correct Answer" />
+                        <div *ngIf="submitted && f.correct.errors" class="invalid-feedback">
+                            <div *ngIf="f.correct.errors.required"> Correct Answer is required</div>
+                        </div>
+                    </div>
+                   
+      
+                    <div class="form-group">
+                        <button [disabled]="loading" class="btn btn-success" >Add</button>
+                        
+                    </div>
+                </form>
+
+                <!-----------update paper ----------->
+
+<hr><hr>
+                
+                <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" *ngIf="isUpdate">
+                        <h2 style="color: red;margin-left:35%;">Update Paper</h2>
+                    <!-- <div class="form-group">
+                          <label for="country"><b>Category</b></label>
+                            <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" autofocus />
+                            <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                                <div *ngIf="f.name.errors.required">Category is required</div>
+                            </div>
+                        </div> -->
+                         <div class="form-group">
+                            <label for="country"><b>Category</b></label>
+                            <select class="form-control" formControlName="category" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.category.errors }">
+                              <option>nda</option>
+                              <option>ssc</option>
+                              <option>na</option>
+                            </select>
+                              <div *ngIf="submitted && f.category.errors" class="invalid-feedback">
+                                  <div *ngIf="f.category.errors.required">Category is required</div>
+                              </div>
+                          </div>
+
+                          <div class="form-group">
+                              <label for="subject"><b>Subject</b></label>
+                              <select class="form-control" formControlName="subject" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.subject.errors }" >
+                                <option>math</option>
+                                <option>scince</option>
+                                <option>gk</option>
+                              </select>
+                                <div *ngIf="submitted && f.subject.errors" class="invalid-feedback">
+                                    <div *ngIf="f.subject.errors.required">subject is required</div>
+                                </div>
+                            </div>
+  
+                    <div class="form-group">
+                        <label for="question"><b>Question</b></label>
+                            <textarea rows="5" cols="10" formControlName="question" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.question.errors }" placeholder="Please Enter The Question" ></textarea>
+                        <div *ngIf="submitted && f.question.errors" class="invalid-feedback">
+                            <div *ngIf="f.question.errors.required"> Question is required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Option1"><b>Option1</b></label>
+                        <input type="text" formControlName="Option1" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.Option1.errors }" placeholder="Please Enter The Option1"  />
+                        <div *ngIf="submitted && f.Option1.errors" class="invalid-feedback">
+                            <div *ngIf="f.Option1.errors.required"> Option1 is required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Option2"><b>Option2</b></label>
+                        <input type="text" formControlName="Option2" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.Option2.errors }" placeholder="Please Enter The Option2"  />
+                        <div *ngIf="submitted && f.Option2.errors" class="invalid-feedback">
+                            <div *ngIf="f.Option2.errors.required"> Option2 is required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Option3"><b>Option3</b></label>
+                        <input type="text" formControlName="Option3" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.Option3.errors }" placeholder="Please Enter The Option3"  />
+                        <div *ngIf="submitted && f.Option3.errors" class="invalid-feedback">
+                            <div *ngIf="f.Option3.errors.required"> Option3 is required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Option4"><b>Option4</b></label>
+                        <input type="text" formControlName="Option4" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.Option4.errors }" placeholder="Please Enter The Option4" />
+                        <div *ngIf="submitted && f.Option4.errors" class="invalid-feedback">
+                            <div *ngIf="f.Option4.errors.required"> Option4 is required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="correct"><b>Correct Answer</b></label>
+                        <input type="text" formControlName="correct" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.correct.errors }" placeholder="Please Enter The Correct Answer" />
+                        <div *ngIf="submitted && f.correct.errors" class="invalid-feedback">
+                            <div *ngIf="f.correct.errors.required"> Correct Answer is required</div>
+                        </div>
+                    </div>
+                   
+      
+                    <div class="form-group">
+                        <button [disabled]="loading" class="btn btn-success" >Update</button>
+                        
+                    </div>
+                </form>
+
+<!-------------------------data table ------------------------------>
+
+
+
+<div class="row">
+
+    <p-table [value]="paper" [paginator]="true" [rows]="5">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Category Name</th>
+                <th>Subject Name</th>
+                <th>Question Name</th>
+                <th>Option1 </th>
+                <th>Option2 </th>
+                <th>Option3 </th>
+                <th>Option4 </th>
+                <th>Correct Answer</th>
+                <th>Action</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-paper>
+            <tr>
+                <td>{{paper.category}}</td>
+                <td>{{paper.subject}}</td>
+                <td>{{paper.question}}</td>
+                <td>{{paper.Option1}}</td>
+                <td>{{paper.Option2}}</td>
+                <td>{{paper.Option3}}</td>
+                <td>{{paper.Option4}}</td>
+                <td>{{paper.correct}}</td>
+                <td>
+                  <p-button (click)="delete(paper._id)" icon="pi pi-trash"  class="ui-button-danger"></p-button>&nbsp;
+                  <p-button (click)="edit(paper._id)" icon="pi pi-pencil" class="ui-button-warning"></p-button>
+                </td>
+            </tr>
+          </ng-template>     
+    </p-table>
+  </div>
+
+
+
+
+
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    
+    
+
+
+    <app-footer></app-footer>

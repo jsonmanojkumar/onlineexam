@@ -1,0 +1,49 @@
+<app-header></app-header>
+
+<div class="container top" >
+<div class="row">
+<div class="col-sm-12 col-xs-12 col-md-12">
+    <div class="card card1">
+        <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+        <div class="card-body">
+          <h2 style="color: red;margin-left:35%;">START EXAM</h2>
+
+          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+          <!-- <form name="form" (ngSubmit)="f.form.valid && onSubmitCustomer()" #f="ngForm" novalidate> -->
+          <div class="form-group">
+              <label for="category"><b>Category</b></label>&nbsp;
+             <p-dropdown (onChange)="onCategoryChange($event)" [options]="categories"  formControlName="category" placeholder="Select a Category" optionLabel="name"  [ngClass]="{ 'is-invalid': submitted && f.category.errors }"></p-dropdown>
+             <div *ngIf="submitted && f.category.errors" class="invalid-feedback">
+              <div *ngIf="f.category.errors.required"> Name is required</div>
+          </div>
+             </div>
+              <!-- <div *ngIf="f.submitted && category.invalid" class="invalid-text">
+                <div style="color: red" *ngIf="category.errors.required">category is required</div>
+              </div> -->
+          
+          
+              <div class="form-group">
+                  <label for="subject"><b>Subject</b></label>&nbsp;&nbsp;&nbsp;&nbsp;
+                  <p-dropdown [options]="subjects"  formControlName="subject" placeholder="Select&nbsp;  a &nbsp; subject" optionLabel="subject" [ngClass]="{ 'is-invalid': submitted && f.subject.errors }"></p-dropdown>
+                  <div *ngIf="submitted && f.subject.errors" class="invalid-feedback">
+                    <div *ngIf="f.subject.errors.required"> Name is required</div>
+                </div>
+                 </div>
+                  <!-- <div *ngIf="f.submitted && subject.invalid" class="invalid-text">
+                    <div style="color: red" *ngIf="subject.errors.required">subject is required</div>
+                  </div><br> -->
+
+                  <button type="submit" class="btn btn-success" >Start The Exam</button>
+                </form> 
+       </div>
+      </div>
+    </div>
+  </div>
+</div><br>
+
+
+
+
+
+
+<app-footer></app-footer>

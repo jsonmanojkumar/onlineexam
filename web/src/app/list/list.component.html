@@ -1,0 +1,76 @@
+
+<hr>
+<form name="form" (ngSubmit)="f.form.valid && onSubmitCustomer()" #f="ngForm" novalidate>
+
+    <div class="form-group">
+    <label for="country"><b>Country</b></label>
+    <select class="form-control" placeholder="Select country" name="country" [(ngModel)]="model.country" #country="ngModel" [ngClass]="{ 'is-invalid': f.submitted && country.invalid }" required>
+      <option class="form-control" *ngFor="let country of countries" [value]="country.id"> {{country.name}}</option>
+    </select>
+   </div>
+    <div *ngIf="f.submitted && country.invalid" class="invalid-text">
+      <div *ngIf="country.errors.required">Country is required</div>
+    </div>
+
+
+    <div class="form-group">
+        <label for="subject"><b>Subject</b></label>
+        <select class="form-control" placeholder="Select subject" name="subject" [(ngModel)]="model.subject" #subject="ngModel" [ngClass]="{ 'is-invalid': f.submitted && subject.invalid }" required>
+          <option class="form-control" *ngFor="let subject of countries" [value]="subject.id"> {{subject.name}}</option>
+        </select>
+       </div>
+        <div *ngIf="f.submitted && subject.invalid" class="invalid-text">
+          <div *ngIf="subject.errors.required">subject is required</div>
+        </div>
+
+    <div class="form-group">
+        <label for="add Question"><b>Question Add</b></label>
+      <textarea class="form-control" name="message" rows="10" cols="30" placeholder="Enter Question"  [(ngModel)]="model.name" #name="ngModel" [ngClass]="{ 'is-invalid': f.submitted && question.invalid }" required> </textarea>            
+      <!-- <input type="text" class="form-control" name="name" [(ngModel)]="model.name" #name="ngModel" [ngClass]="{ 'is-invalid': f.submitted && name.invalid }" required> -->
+    <div *ngIf="f.submitted && question.invalid" class="invalid-text">
+      <div *ngIf="question.errors.required">Question add is required</div>
+    </div>
+    </div>
+
+    <div class="form-group">
+        <label for="name"><b>Option 1</b></label>
+        <input type="text" class="form-control" name="name" [(ngModel)]="model.name" #name="ngModel" [ngClass]="{ 'is-invalid': f.submitted && name.invalid }" required>
+      <div *ngIf="f.submitted && name.invalid" class="invalid-text">
+        <div *ngIf="name.errors.required">option 1 is required</div>
+      </div>
+      </div>
+
+      <div class="form-group">
+          <label for="name"><b>Option 2</b></label>
+          <input type="text" class="form-control" name="name" [(ngModel)]="model.name" #name="ngModel" [ngClass]="{ 'is-invalid': f.submitted && name.invalid }" required>
+        <div *ngIf="f.submitted && name.invalid" class="invalid-text">
+          <div *ngIf="name.errors.required">option 2 is required</div>
+        </div>
+        </div>
+
+        <div class="form-group">
+            <label for="name"><b>Option 3</b></label>
+            <input type="text" class="form-control" name="name" [(ngModel)]="model.name" #name="ngModel" [ngClass]="{ 'is-invalid': f.submitted && name.invalid }" required>
+          <div *ngIf="f.submitted && name.invalid" class="invalid-text">
+            <div *ngIf="name.errors.required">option 3 is required</div>
+          </div>
+          </div>
+
+          <div class="form-group">
+              <label for="name"><b>Option 4</b></label>
+              <input type="text" class="form-control" name="name" [(ngModel)]="model.name" #name="ngModel" [ngClass]="{ 'is-invalid': f.submitted && name.invalid }" required>
+            <div *ngIf="f.submitted && name.invalid" class="invalid-text">
+              <div *ngIf="name.errors.required">option 4 is required</div>
+            </div>
+            </div>
+
+            <div class="form-group">
+                <label for="name"><b>Correct Answer</b></label>
+                <input type="text" class="form-control"  name="name" [(ngModel)]="model.name" #name="ngModel" [ngClass]="{ 'is-invalid': f.submitted && name.invalid }" required>
+              <div *ngIf="f.submitted && name.invalid" class="invalid-text">
+                <div *ngIf="name.errors.required">Correct answer is required</div>
+              </div>
+              </div>
+    <button type="submit" class="registerbtn">Register</button>
+</form> 
+

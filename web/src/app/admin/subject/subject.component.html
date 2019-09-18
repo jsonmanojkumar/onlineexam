@@ -1,0 +1,116 @@
+<app-header></app-header>
+
+<div class="container top" >
+    <div class="row">
+    <div class="col-sm-12 col-xs-12 col-md-12">
+        <div class="card card1">
+            <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+            <div class="card-body">
+                <h2 style="color: red;margin-left:35%;">Add Subject</h2>
+                <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                  <!-- <div class="form-group">
+                        <label for="country"><b>Category</b></label>
+                          <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" autofocus />
+                          <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                              <div *ngIf="f.name.errors.required">Category is required</div>
+                          </div>
+                      </div> -->
+
+                       <div class="form-group">
+                          <label for="category"><b>Category</b></label>&nbsp;&nbsp;
+                          <p-dropdown [options]="categories"  formControlName="category" placeholder="Select a Category" optionLabel="name" [ngClass]="{ 'is-invalid': submitted && f.category.errors }" ></p-dropdown>
+
+                            <div *ngIf="submitted && f.category.errors" class="invalid-feedback">
+                                <div *ngIf="f.category.errors.required">Category is required</div>
+                            </div>
+                        </div>
+
+                  <div class="form-group">
+                      <label for="subject"><b>Subject</b></label>
+                      <input type="text" formControlName="subject" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.subject.errors }" placeholder="Please Enter The Subject"  />
+                      <div *ngIf="submitted && f.subject.errors" class="invalid-feedback">
+                          <div *ngIf="f.subject.errors.required"> Subject is required</div>
+                      </div>
+                  </div>
+                 
+    
+                  <div class="form-group">
+                      <button [disabled]="loading" class="btn btn-success" >Add</button>
+                      
+                  </div>
+              </form>
+              <!-------------------- update  -------------------------->
+            <br><hr><hr>
+          
+              <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" *ngIf="isUpdate">
+                    <h2 style="color: red;margin-left:35%;">Update Subject</h2>
+                     <div class="form-group">
+                        <label for="country"><b>Category</b></label>
+                        <p-dropdown [options]="categories" formControlName="category" placeholder="Select a City" optionLabel="name" [showClear]="true"></p-dropdown>
+
+                          <div *ngIf="submitted && f.category.errors" class="invalid-feedback">
+                              <div *ngIf="f.category.errors.required">Category is required</div>
+                          </div>
+                      </div>
+
+                <div class="form-group">
+                    <label for="subject"><b>Subject</b></label>
+                    <input type="text" formControlName="subject" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.subject.errors }" placeholder="Please Enter The Subject"  />
+                    <div *ngIf="submitted && f.subject.errors" class="invalid-feedback">
+                        <div *ngIf="f.subject.errors.required"> Subject is required</div>
+                    </div>
+                </div>
+               
+  
+                <div class="form-group">
+                    <button [disabled]="loading" class="btn btn-success" >Update</button>
+                    
+                </div>
+            </form>
+
+
+<!---------------------------Data Table ----------------------->
+
+<div class="row">
+
+  <p-table [value]="subject" [paginator]="true" [rows]="5">
+      <ng-template pTemplate="header">
+          <tr>
+              <th>Category Name</th>
+              <th>Subject Name</th>
+              <th>Action</th>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-subject>
+          <tr>
+              <td>{{subject.category}}</td>
+              <td>{{subject.subject}}</td>
+              <td>
+                <p-button (click)="delete(subject._id)" icon="pi pi-trash" class="ui-button-danger"></p-button>&nbsp;
+                <p-button (click)="edit(subject._id)" icon="pi pi-pencil" class="ui-button-warning"></p-button>
+              </td>
+          </tr>
+        </ng-template>     
+  </p-table>
+</div>
+
+
+
+
+
+
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><br>
+    
+    
+    
+    
+    
+    
+
+    <app-footer></app-footer>

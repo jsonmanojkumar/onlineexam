@@ -1,0 +1,82 @@
+<app-header></app-header>
+
+<div class="container top" >
+    <div class="row">
+    <div class="col-sm-12 col-xs-12 col-md-12">
+        <div class="card card1">
+            <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+            <div class="card-body">
+              <h2 style="color: red;margin-left:35%;">Add Category</h2>
+                    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" *ngIf="!isUpdate">
+                      <div class="form-group">
+                        <label for="country"><b>Category</b></label>
+                          <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" autofocus />
+                          <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                              <div *ngIf="f.name.errors.required">category is required</div>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <button [disabled]="loading" class="btn btn-success">Add</button>
+                         </div>
+                  </form>
+
+
+
+
+
+
+                  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" *ngIf="isUpdate">
+                    <div class="form-group">
+                      <label for="country"><b>update Category</b></label>
+                        <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" autofocus />
+                        <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                            <div *ngIf="f.name.errors.required">category is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button [disabled]="loading" class="btn btn-success">Update</button>
+                       </div>
+                </form>
+
+
+
+
+<!----------- data table-->
+
+<div class="row">
+
+  <p-table [value]="category" [paginator]="true" [rows]="5">
+      <ng-template pTemplate="header">
+          <tr>
+              <th>Category Name</th>
+              <th>Action</th>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-category>
+          <tr>
+              <td>{{category.name}}</td>
+              <td>
+                <p-button (click)="delete(category._id)" icon="pi pi-trash" class="ui-button-danger"></p-button>
+                <p-button (click)="edit(category._id)" icon="pi pi-pencil" class="ui-button-warning"></p-button>
+              </td>
+          </tr>
+      </ng-template>
+  </p-table>
+</div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<br><br>
+
+
+
+    
+    
+    <app-footer></app-footer>
+    
+    
+    
+    

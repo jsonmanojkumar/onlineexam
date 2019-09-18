@@ -1,0 +1,54 @@
+<app-header></app-header>
+<div *ngIf="!isSubmited" class="container top" >
+    <div class="row">
+     <div class="col-sm-12 col-xs-12 col-md-12">
+        <div class="card card1">
+            
+            <div *ngIf="question" class="card-body">
+              <!-- <h2 style="color: red;margin-left:35%;">Time:12:00 </h2> -->
+              <h3><h3>Q.{{qindex+1}}</h3>{{question.question}}</h3><br>
+             <input (click)="selectOption(question.Option1)" type="radio"  name="{{qindex}}" >&nbsp;{{question.Option1}}<br><br>
+               <input (click)="selectOption(question.Option2)" type="radio" name="{{qindex}}">&nbsp;{{question.Option2}}<br><br>
+               <input (click)="selectOption(question.Option3)" type="radio" name="{{qindex}}">&nbsp;{{question.Option3}}<br><br>
+               <input (click)="selectOption(question.Option4)" type="radio" name="{{qindex}}">&nbsp;{{question.Option4}}<br><br><br>
+                   
+                    <button (click)="back()" type="button" style="margin-left:35%;" class="btn btn-primary">Preview</button>
+                    <button *ngIf="qindex+1!=paper.length" (click)="next()" type="button" style="margin-left: 20%" class="btn btn-success">Next</button>
+                    <button *ngIf="qindex+1==paper.length" (click)="calculateResult()" type="button" style="margin-left: 20%" class="btn btn-success">Submit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div><br>
+
+
+  <div *ngIf="isSubmited" class="container top" >
+    <div class="row">
+    <div class="col-sm-12 col-xs-12 col-md-12">
+        <div class="card card1">
+            <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+            <div class="card-body">
+              <h2 style="color: red;margin-left:35%;">Result</h2>
+                
+              <ul>
+                <h2><li>Total Questions : {{totalq}}</li></h2><br>
+                <!-- <li>Persontage :{{qat}}</li><br> -->
+                <h2><li>Wrong Questions :{{wrong}}</li></h2><br>
+                  <h2> <li>Correct Questions :{{correct}}</li></h2><br>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<br><br>
+
+
+
+
+    
+    <app-footer></app-footer>
+    
+    
+    
+    

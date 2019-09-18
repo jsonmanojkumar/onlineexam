@@ -1,0 +1,67 @@
+<div class="container">
+  <form [formGroup]="addForm">
+    <div style="margin-top: 100px" class="row">
+      <div class="col-md-3 form-group">
+        <span class="ui-float-label">
+          <input id="float-input" formControlName="first_name" type="text" size="30" pInputText>
+          <label for="float-input">First Name</label>
+          <div *ngIf="addForm.controls['first_name'].hasError('required')&&is_submited">First Name is required</div>
+        </span>
+      </div>
+      <div class="col-md-3 form-group">
+        <span class="ui-float-label">
+          <input id="float-input" formControlName="last_name" type="text" size="30" pInputText>
+          <label for="float-input">Last Name</label>
+          <div *ngIf="addForm.controls['last_name'].hasError('required')&&is_submited">Last Name is required</div>
+        </span>
+      </div>
+
+      <div class="col-md-3 form-group">
+        <span class="ui-float-label">
+          <input id="float-input" formControlName="course" type="text" size="30" pInputText>
+          <label for="float-input">Course</label>
+          <div *ngIf="addForm.controls['course'].hasError('required')&&is_submited">Course is required</div>
+        </span>
+      </div>
+      <div class="col-md-3 form-group">
+        <span class="ui-float-label">
+            <p-calendar id="float-input" formControlName="DOB" [showIcon]="true"></p-calendar>
+          <label for="float-input">DOB</label>
+          <div *ngIf="addForm.controls['DOB'].hasError('required')&&is_submited">DOB is required</div>
+        </span> 
+      </div>
+      <div class="col-md-3 form-group">
+        <a (click)="create()" class="btn btn-success">+ CREATE</a>
+      </div>
+    </div>
+  </form>
+
+<div class="row">
+
+    <p-table [value]="students">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Course</th>
+                <th>DOB</th>
+                <th>Action</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-student>
+            <tr>
+                <td>{{student.first_name}}</td>
+                <td>{{student.last_name}}</td>
+                <td>{{student.course}}</td>
+                <td>{{student.DOB}}</td>
+                <td>
+                  <p-button (click)="delete(student._id)" icon="pi pi-trash" class="ui-button-danger"></p-button>
+                  <p-button (click)="edit(student._id)" icon="pi pi-pencil" class="ui-button-warning"></p-button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+
+</div>
+
+</div>
